@@ -26,7 +26,7 @@ let username = process.env.TEXT_TO_SPEECH_USERNAME;
 let password = process.env.TEXT_TO_SPEECH_PASSWORD;
 
 // On Cloud Foundry, we'll have a VCAP_SERVICES environment variable with credentials.
-let vcapCredentials = vcapServices.getCredentials('speech_to_text');
+let vcapCredentials = vcapServices.getCredentials('text_to_speech');
 
 // Create appropriate token manager and client.
 let client;
