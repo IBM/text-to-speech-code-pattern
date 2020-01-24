@@ -10,12 +10,15 @@ import {
   Tile,
 } from 'carbon-components-react';
 import useDataApi from 'use-data-api';
+import { sampleText } from '../../data/sampleText';
 
 const VOICES_ENDPOINT = '/api/voices';
 
 const mapVoicesToDropdownItems = voices =>
   voices
-    .sort((voiceA, voiceB) => voiceA.description > voiceB.description)
+    .sort((voiceA, voiceB) =>
+      voiceA.description.localeCompare(voiceB.description),
+    )
     .map(voice => {
       const colonIndex = voice.description.indexOf(':');
       const voicePersonName = voice.description.substring(0, colonIndex);
@@ -44,10 +47,17 @@ export const ControlContainer = ({ onSynthesize }) => {
 
   // Default to initial voice once all voices are loaded.
   useEffect(() => {
-    if (voices[0]) {
-      setSelectedVoice(mapVoicesToDropdownItems(voices)[0]);
+    if (voices[1]) {
+      onSelectVoice(mapVoicesToDropdownItems(voices)[1]);
     }
   }, [voices]);
+
+  const onSelectVoice = voice => {
+    setSelectedVoice(voice);
+
+    const text = sampleText[voice.id];
+    setText(text);
+  };
 
   return (
     <Tile className="control-container">
@@ -60,7 +70,7 @@ export const ControlContainer = ({ onSynthesize }) => {
             id="voice-model-dropdown"
             label="Select a voice model"
             onChange={newModel => {
-              setSelectedVoice(newModel.selectedItem);
+              onSelectVoice(newModel.selectedItem);
             }}
             items={mapVoicesToDropdownItems(voices)}
             selectedItem={selectedVoice && selectedVoice.label}
