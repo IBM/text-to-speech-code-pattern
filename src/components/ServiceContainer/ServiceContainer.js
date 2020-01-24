@@ -24,16 +24,17 @@ export const ServiceContainer = () => {
       setError(createError(TOKEN_ERROR_TITLE, authJson));
     }
 
-    try {
-      synthesize({
-        accessToken: authJson.accessToken,
-        element: audioElementRef.current,
-        text,
-        voice: voice.id,
-      });
-    } catch (error) {
-      setError(createError(SYNTHESIZE_ERROR_TITLE, error));
-    }
+    const audio = await synthesize({
+      accessToken: authJson.accessToken,
+      autoPlay: false,
+      element: audioElementRef.current,
+      text,
+      voice: voice.id,
+    });
+    audio.play().catch(error => {
+      console.log('ERROR', error);
+      setError(createError(SYNTHESIZE_ERROR_TITLE, error.message));
+    });
   };
 
   return (
