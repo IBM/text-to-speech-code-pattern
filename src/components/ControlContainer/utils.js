@@ -15,7 +15,7 @@ export const mapVoicesToDropdownItems = voices =>
       );
       const label = `${voicePersonName}${
         isV3 ? ' (V3)' : ''
-      }: ${restOfDescription}`;
+      }:${restOfDescription}`;
 
       return {
         id: voice.name,
