@@ -11,25 +11,9 @@ import {
 } from 'carbon-components-react';
 import useDataApi from 'use-data-api';
 import { sampleText } from '../../data/sampleText';
+import { mapVoicesToDropdownItems } from './utils';
 
 const VOICES_ENDPOINT = '/api/voices';
-
-const mapVoicesToDropdownItems = voices =>
-  voices
-    .sort((voiceA, voiceB) =>
-      voiceA.description.localeCompare(voiceB.description),
-    )
-    .map(voice => {
-      const colonIndex = voice.description.indexOf(':');
-      const voicePersonName = voice.description.substring(0, colonIndex);
-      const restOfDescription = voice.description.substring(colonIndex + 1);
-      const label = `${voicePersonName} (${voice.name}): ${restOfDescription}`;
-
-      return {
-        id: voice.name,
-        label,
-      };
-    });
 
 export const ControlContainer = ({ onSynthesize }) => {
   const [voices, setVoices] = useState([]);
@@ -62,6 +46,10 @@ export const ControlContainer = ({ onSynthesize }) => {
   return (
     <Tile className="control-container">
       <h3 className="container-title">Input</h3>
+      <p className="voice-info">
+        For optimal naturalness, select the (V3) voices, which are built using
+        deep neural networks.
+      </p>
       <FormGroup legendText="Voice model">
         {isLoading || (voices.length === 0 && !isError) ? (
           <DropdownSkeleton />
