@@ -22,8 +22,18 @@ app.get('/health', (_, res) => {
 
 app.get('/api/voices', async (_, res, next) => {
   try {
-    const { result } = await client.listVoices();
-    return res.json(result);
+    if (client) {
+      const { result } = await client.listVoices();
+      return res.json(result);
+    } else {
+      // Return Allison for testing and user still gets creds pop-up.
+      return res.json(
+        { voices: [
+          { name: 'en-US_AllisonV3Voice',
+            description: 'Allison: American English female voice. Dnn technology.',
+          }]
+        });
+    }
   } catch (err) {
     console.error(err);
     if (!client) {
