@@ -14,7 +14,7 @@ describe('App functionality', () => {
     // Choose voice model.
     await expect(page).toClick('div.bx--dropdown');
     await expect(page).toClick('div.bx--list-box__menu-item__option', {
-      text: 'Allison: American English female voice',
+      text: 'Allison (V3): American English female voice',
     });
 
     // Add some text.
