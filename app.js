@@ -7,7 +7,7 @@ require('./config/express')(app);
 // Create Text to Speech client.
 let client;
 try {
-  client = new TextToSpeechV1({});
+  client = new TextToSpeechV1({ version: '2020-06-02' });
 } catch (err) {
   console.error('Error creating service client: ', err);
 }

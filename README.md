@@ -1,202 +1,97 @@
-<h1 align="center" style="border-bottom: none;">Text to Speech Code Pattern 📜</h1>
-<h3 align="center">Sample React app for playing around with the Watson Text to Speech service.</h3>
-<p align="center">
-  <a href="http://travis-ci.org/watson-developer-cloud/text-to-speech-code-pattern">
-    <img alt="Travis" src="https://travis-ci.org/watson-developer-cloud/text-to-speech-code-pattern.svg?branch=master">
-  </a>
-  <a href="#badge">
-    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
-  </a>
-</p>
-</p>
+[![Build Status](https://travis-ci.com/IBM/text-to-speech-code-pattern.svg?branch=master)](https://travis-ci.com/IBM/text-to-speech-code-pattern)
+
+# Text to Speech Code Pattern
+
+Sample React app for playing around with the Watson Text to Speech service
 
 ✨ **Demo:** https://text-to-speech-code-pattern.ng.bluemix.net/ ✨
 
-## Flow
+![architecture](doc/source/images/architecture.png)
 
-<p align="center">
-  <img alt="architecture" width="600" src="./public/architecture.png">
-</p>
+## Flow
 
 1. User supplies some text as input to the application (running locally, in the IBM Cloud or in IBM Cloud Pak for Data).
 1. The application sends the text to the Watson Text to Speech service.
 1. As the data is processed, the Text to Speech service returns audio information to the HTML5 audio element for playback.
 
-## Prerequisites
+## Steps
 
-1. Sign up for an [IBM Cloud account](https://cloud.ibm.com/registration/).
-1. Download the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview).
-1. Create an instance of the Text to Speech service and get your credentials:
-   - Go to the [Text to Speech](https://cloud.ibm.com/catalog/services/text-to-speech) page in the IBM Cloud Catalog.
-   - Log in to your IBM Cloud account.
-   - Click **Create**.
-   - Click **Show** to view the service credentials.
-   - Copy the `apikey` value.
-   - Copy the `url` value.
+1. [Provision Watson Text to Speech](#1-Provision-Watson-Text-to-Speech)
+2. [Deploy the server](#2-Deploy-the-server)
+3. [Use the web app](#3-Use-the-web-app)
 
-### Cloud Pak for Data
+## 1. Provision Watson Text to Speech
 
-To use this code pattern with a Text to Speech instance provisioned on Cloud Pak for Data, you can use your CPD `username` and `password` credentials or an `access_token` to authenticate your requests. You also need the service `url` as described [here](https://cloud.ibm.com/apidocs/text-to-speech/text-to-speech-data#authentication).
+> Note: You can skip this step if you will be using the `Deploy to Cloud Foundry on IBM Cloud` button below. That option automatically creates the service and binds it (providing its credentials) to the application.
 
-Another important thing to note is that this code pattern assumes that you're using a **valid SSL certificate** for your CPD cluster. If not, you'll receive transcription errors. If you'd still like to use the app with an invalid certificate, you'll need to look up your browser-specific way to ignore these certificate errors. Do note that this is very insecure though!
+The instructions will depend on whether you are provisioning services using IBM Cloud Pak for Data or on IBM Cloud.
 
-## Configuring the application
+**Click to expand one:**
 
-Depending on where your service instance is you may have different ways to download the credentials file.
+<details><summary><b>IBM Cloud Pak for Data</b></summary>
+<p>
+<p>
+<h4>Install and provision</h4>
+<p>
+The service is not available by default. An administrator must install it on the IBM Cloud Pak for Data platform, and you must be given access to the service. To determine whether the service is installed, click the <b>Services</b> icon (<img class="lazycontent" src="doc/source/images/services_icon.png" alt="services_icon"/>) and check whether the service is enabled.
+<p>
+<h4>Gather credentials</h4>
+<p>
+<ol>
+    <li>For production use, create a user to use for authentication. From the main navigation menu (☰), select <b>Administer > Manage users</b> and then <b>+ New user</b>.</li>
+    <li>From the main navigation menu (☰), select <b>My instances</b>.</li>
+    <li>On the <b>Provisioned instances</b> tab, find your service instance, and then hover over the last column to find and click the ellipses icon. Choose <b>View details</b>.</li>
+    <li>Copy the <b>URL</b> to use as the <b>TEXT_TO_SPEECH_URL</b> when you configure credentials.</li>
+    <li><i>Optionally, copy the <b>Bearer token</b> to use in development testing only. It is not recommended to use the bearer token except during testing and development because that token does not expire.</i></li>
+    <li>Use the <b>Menu</b> and select <b>Users</b> and <b>+ Add user</b> to grant your user access to this service instance. This is the <b>TEXT_TO_SPEECH_USERNAME</b> (and <b>TEXT_TO_SPEECH_PASSWORD</b>) you will use when you configure credentials to allow the Node.js server to authenticate.</li>
+</ol>
 
-> Need more information? See the [authentication wiki](https://github.com/IBM/node-sdk-core/blob/master/AUTHENTICATION.md).
+</details>
 
-### Automatically
+<details><summary><b>IBM Cloud</b></summary>
+<p>
+<h4>Create the service instance</h4>
 
-Copy the credential file to the application folder.
+* If you do not have an IBM Cloud account, register for a free trial account [here](https://cloud.ibm.com/registration).
+* Click [here](https://cloud.ibm.com/catalog/services/text-to-speech) to create a **Text to Speech** instance.
+  * `Select a region`.
+  * `Select a pricing plan` (**Lite** is *free*).
+  * Set your `Service name` or use the generated one.
+  * Click `Create`.
+* Gather credentials
+  * Copy the <b>API Key</b> and <b>URL</b> to use when you configure and [deploy the server](#2-Deploy-the-server).
 
-**Cloud Pak for Data**
+> If you need to find the service later, use the main navigation menu (☰) and select **Resource list** to find the service under **Services**.
+Click on the service name to get back to the **Manage** view (where you can collect the **API Key** and **URL**).
 
-<p align="center">
-  <img alt="CPD"  width="600" src="https://watson-developer-cloud.github.io/images/credentials-cpd.png">
-</p>
+</details>
 
-**Public Cloud**
+## 2. Deploy the server
 
-<p align="center">
-  <img alt="public"  width="600" src="https://watson-developer-cloud.github.io/images/credentials-public.png">
-</p>
+Click on one of the options below for instructions on deploying the Node.js server.
 
-### Manually
+|   |   |   |   |
+| - | - | - | - |
+| [![local](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/local.png)](doc/source/local.md) | [![openshift](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/openshift.png)](doc/source/openshift.md) | [![cf](https://raw.githubusercontent.com/IBM/pattern-utils/master/deploy-buttons/cf.png)](doc/source/cf.md) |
 
-1. In the application folder, copy the `.env.example` file and create a file called `.env`:
+## 3. Use the web app
 
-   ```
-   cp .env.example .env
-   ```
+* Select an input `Voice model`.
 
-2. Open the `.env` file and add the service credentials depending on your environment.
+* Use the demo `Text to synthesize` or enter your own text into that text box.
 
-   Example `.env` file that configures the `apikey` and `url` for a Speech to Text service instance hosted in the US South region:
+* Press the `Synthesize` button to create audio from that text and hear it in the selected voice.
 
-   ```
-   TEXT_TO_SPEECH_APIKEY=12345abcde
-   TEXT_TO_SPEECH_URL=https://stream.watsonplatform.net/text-to-speech/api
-   ```
+* The audio plays automatically. You can also use the `Synthesized audio` controls to pause, play, etc.
 
-   - **CPD using username and password:** If your service instance is running in Cloud Pak for Data and you want to use `username` and `password` credentials, add the following variables to the `.env` file.
+![ui.png](doc/source/images/ui.png)
 
-     ```
-     TEXT_TO_SPEECH_USERNAME=admin
-     TEXT_TO_SPEECH_PASSWORD=password
-     TEXT_TO_SPEECH_URL=https://{cpd-url}:{cpd-port}/text-to-speech/api
-     ```
+## Developing and testing
 
-   - **CPD using access token:** If your service instance is running in Cloud Pak for Data and you want to use the `access_token` from the service instance detail page, add the following:
-
-     ```
-     TEXT_TO_SPEECH_BEARER_TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.ey...
-     TEXT_TO_SPEECH_URL=https://{cpd-url}:{cpd-port}/text-to-speech/api
-     ```
-
-## Running locally
-
-1. Install the dependencies
-
-   ```
-   npm install
-   ```
-
-1. Build the application
-
-   ```
-   npm run build
-   ```
-
-1. Run the application
-
-   ```
-   npm run dev
-   ```
-
-1. View the application in a browser at `localhost:3000`
-
-## Deploying to IBM Cloud as a Cloud Foundry Application
-
-Click on the button below to deploy this demo to the IBM Cloud.
-
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/watson-developer-cloud/text-to-speech-code-pattern)
-
-1. Build the application
-
-   ```
-   npm run build
-   ```
-
-1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
-
-   ```
-   ibmcloud login
-   ```
-
-1. Target a Cloud Foundry organization and space.
-
-   ```
-   ibmcloud target --cf
-   ```
-
-1. Edit the `manifest.yml` file. Change the **name** field to something unique. For example: `- name: my-app-name`.
-1. Deploy the application
-
-   ```
-   ibmcloud app push
-   ```
-
-1. View the application online at the app URL, for example: https://my-app-name.mybluemix.net
-
-## Tests
-
-#### Unit tests
-
-Run unit tests with:
-
-```
-npm run test:components
-```
-
-See the output for more info.
-
-#### Integration tests
-
-First you have to make sure your code is built:
-
-```
-npm run build
-```
-
-Then run integration tests with:
-
-```
-npm run test:integration
-```
-
-## Directory structure
-
-```none
-.
-├── app.js                      // Express routes
-├── config                      // Express configuration
-│   ├── error-handler.js
-│   ├── express.js
-│   └── security.js
-├── package.json
-├── public                      // Static resources
-├── server.js                   // Entry point
-├── test                        // Tests
-└── src                         // React client
-    └── index.js                // App entry point
-```
+See [DEVELOPING.md](DEVELOPING.md) and [TESTING.md](TESTING.md) for more details about developing and testing this app.
 
 ## License
 
-This sample code is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+This code pattern is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
-## Open Source @ IBM
-
-Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
-
+[Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
