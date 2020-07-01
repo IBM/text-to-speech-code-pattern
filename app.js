@@ -4,6 +4,19 @@ const express = require('express');
 const app = express();
 require('./config/express')(app);
 
+// For starter kit env.
+require('dotenv').config({
+  silent: true
+});
+const pEnv = process.env;
+
+if (pEnv.service_watson_text_to_speech && !pEnv.VCAP_SERVICES && !pEnv.TEXT_TO_SPEECH_APIKEY && !pEnv.TEXT_TO_SPEECH_URL && !pEnv.TEXT_TO_SPEECH_USERNAME) {
+  // If we don't have the expected environment variables, use the starter kit apikey and url.
+  let skitJson = JSON.parse(pEnv.service_watson_text_to_speech);
+  process.env.TEXT_TO_SPEECH_APIKEY = skitJson.apikey;
+  process.env.TEXT_TO_SPEECH_URL = skitJson.url;
+}
+
 // Create Text to Speech client.
 let client;
 try {
