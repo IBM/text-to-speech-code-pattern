@@ -38,7 +38,7 @@ const HEADER_LINKS = [
     key="github-link"
     target="_blank"
     rel="noopener noreferrer"
-    href="https://github.com/watson-developer-cloud/text-to-speech-code-pattern"
+    href="https://github.com/IBM/text-to-speech-code-pattern"
   >
     <p className="link-text">GitHub</p>
     <LogoGithub24 className="link-icon" />
