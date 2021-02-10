@@ -9,13 +9,13 @@ require('dotenv').config({
   silent: true
 });
 const pEnv = process.env;
+const skitJson = JSON.parse(process.env.service_watson_text_to_speech || "{}");
+const apikey = skitJson?.apikey || process.env.TEXT_TO_SPEECH_APIKEY || process.env.TEXTTOSPEECH_APIKEY;
+const url = skitJson?.url || process.env.TEXT_TO_SPEECH_URL ||
+process.env.TEXTTOSPEECH_URL;
 
-if (pEnv.service_watson_text_to_speech && !pEnv.VCAP_SERVICES && !pEnv.TEXT_TO_SPEECH_APIKEY && !pEnv.TEXT_TO_SPEECH_URL && !pEnv.TEXT_TO_SPEECH_USERNAME) {
-  // If we don't have the expected environment variables, use the starter kit apikey and url.
-  let skitJson = JSON.parse(pEnv.service_watson_text_to_speech);
-  process.env.TEXT_TO_SPEECH_APIKEY = skitJson.apikey;
-  process.env.TEXT_TO_SPEECH_URL = skitJson.url;
-}
+process.env.TEXT_TO_SPEECH_APIKEY = apikey;
+process.env.TEXT_TO_SPEECH_URL = url;
 
 // Create Text to Speech client.
 let client;
