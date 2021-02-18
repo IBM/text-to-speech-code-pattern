@@ -10,12 +10,23 @@ require('dotenv').config({
 });
 const pEnv = process.env;
 const skitJson = JSON.parse(process.env.service_watson_text_to_speech || "{}");
-const apikey = skitJson?.apikey || process.env.TEXT_TO_SPEECH_APIKEY || process.env.TEXTTOSPEECH_APIKEY;
-const url = skitJson?.url || process.env.TEXT_TO_SPEECH_URL ||
-process.env.TEXTTOSPEECH_URL;
 
-process.env.TEXT_TO_SPEECH_APIKEY = apikey;
-process.env.TEXT_TO_SPEECH_URL = url;
+// Look for credentials in all the places
+const apikey = process.env.TEXT_TO_SPEECH_APIKEY || process.env.TEXTTOSPEECH_APIKEY || skitJson?.apikey;
+const url = process.env.TEXT_TO_SPEECH_URL ||
+process.env.TEXTTOSPEECH_URL || skitJson?.url;
+
+// A null/undefined service env var would actually cause
+// the core SDK to throw an error in integration tests
+// and fail the test, but if the env var is left unset
+// it won't
+if (apikey) {
+  process.env.TEXT_TO_SPEECH_APIKEY = apikey;
+}
+
+if (url) {
+  process.env.TEXT_TO_SPEECH_URL = url;
+}
 
 // Create Text to Speech client.
 let client;
