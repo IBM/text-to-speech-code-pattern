@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/IBM/text-to-speech-code-pattern.svg?branch=master)](https://travis-ci.com/IBM/text-to-speech-code-pattern)
+[![Build Status](https://github.com/IBM/text-to-speech-code-pattern/actions/workflows/nodejs.yml/badge.svg?branch=master)](https://github.com/IBM/text-to-speech-code-pattern/actions/workflows/nodejs.yml)
 
 # Text to Speech Code Pattern
 
