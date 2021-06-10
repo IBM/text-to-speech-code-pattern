@@ -12,7 +12,7 @@
     "express-rate-limit": "^5.2.6",
     "express-secure-only": "^0.2.1",
     "helmet": "^4.1.1",
-    "ibm-watson": "^5.7.1",
+    "ibm-watson": "^6.1.1",
     "morgan": "^1.10.0",
     "use-data-api": "^1.0.1"
   },
@@ -75,7 +75,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-json-tree": "^0.13.0",
-    "react-json-view": "^1.19.1",
+    "react-json-view": "^1.21.3",
     "react-scripts": "3.4.3"
   },
   "prettier": {
