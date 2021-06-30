@@ -67,7 +67,7 @@
     "node-sass": "npm:dart-sass@^1.25.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.2",
-    "puppeteer": "^10.0.0",
+    "puppeteer": "^10.1.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-json-tree": "^0.15.0",
