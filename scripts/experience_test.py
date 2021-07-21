@@ -29,6 +29,12 @@ try:
     src = audio_button.get_attribute("src")
     print("AUDIO SOURCE: ", src)
 
+    # Find and select Allison V3
+    drop_down = driver.find_element_by_xpath("//button[@id='downshift-0-toggle-button']")
+    drop_down.click()
+    drop_down_element = driver.find_element_by_xpath("//div[contains(text(),'Allison (V3)')]")
+    drop_down_element.click()
+
     # Find button and click it
     synthesize_button = driver.find_element_by_xpath("//button[contains(text(),'Synthesize')]")
     synthesize_button.click()
