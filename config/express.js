@@ -14,6 +14,5 @@ module.exports = function(app) {
     security(app);
   }
 
-  app.use(express.static(path.join(__dirname, '..', 'build')));
   app.use(morgan('dev'));
 };

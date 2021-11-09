@@ -36,9 +36,18 @@ try {
   console.error('Error creating service client: ', err);
 }
 
-app.get('/', (_, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// Caching issues are causing alerts. Avoid cache.
+var options = {
+  etag: false,
+  maxAge: '0',
+  setHeaders: function (res, _path, _stat) {
+    res.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Pragma', 'no-cache');
+    res.header('Expires', '0');
+  }
+}
+
+app.use(express.static(path.join(__dirname, 'build'), options ));
 
 app.get('/health', (_, res) => {
   res.json({ status: 'UP' });
