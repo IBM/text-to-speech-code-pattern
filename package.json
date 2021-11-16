@@ -32,7 +32,7 @@
     "extends": "react-app"
   },
   "engines": {
-    "node": "14.x"
+    "node": "^16.0.0"
   },
   "browserslist": {
     "production": [
@@ -61,12 +61,11 @@
     "carbon-icons": "^7.0.7",
     "carbon-themes": "^1.7.0",
     "husky": "^7.0.1",
-    "jest": "26.6.0",
     "jest-puppeteer": "^6.0.0",
-    "lint-staged": "^11.1.2",
+    "lint-staged": "^12.0.2",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
-    "puppeteer": "^10.2.0",
+    "puppeteer": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-json-tree": "^0.15.0",
