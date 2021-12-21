@@ -9,6 +9,6 @@ applications:
   instances: 1
   name: text-to-speech-code-pattern
   buildpacks:
-  - sdk-for-nodejs
+  - nodejs_buildpack
   services:
   - ttscp-text-to-speech
