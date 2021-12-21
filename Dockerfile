@@ -29,7 +29,7 @@ COPY --from=build /opt/app-root/src/build /opt/app-root/src/build
 COPY --from=build /opt/app-root/src/config /opt/app-root/src/config
 COPY --from=build /opt/app-root/src/*.js* /opt/app-root/src/
 
-RUN npm install
+RUN npm install --only=prod
 
 ENV PORT 5000
 
