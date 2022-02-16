@@ -62,7 +62,7 @@
     "carbon-components-react": "^7.53.0",
     "carbon-icons": "^7.0.7",
     "carbon-themes": "^1.7.0",
-    "jest-puppeteer": "^6.0.0",
+    "jest-puppeteer": "^6.1.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "puppeteer": "^13.3.2",
