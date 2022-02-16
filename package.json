@@ -4,7 +4,7 @@
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.2",
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
