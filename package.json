@@ -11,7 +11,7 @@
     "express": "^4.17.2",
     "express-rate-limit": "^6.2.1",
     "express-secure-only": "^0.2.1",
-    "helmet": "^4.1.1",
+    "helmet": "^5.0.2",
     "husky": "^7.0.1",
     "ibm-watson": "^6.2.2",
     "lint-staged": "^12.3.4",
