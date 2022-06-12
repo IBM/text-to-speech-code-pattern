@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import VolumeUp24Filled from '@carbon/icons-react/lib/volume--up--filled/24';
+import { VolumeUpFilled } from '@carbon/react/icons';
 import {
   Button,
   Dropdown,
@@ -8,7 +8,7 @@ import {
   FormGroup,
   TextArea,
   Tile,
-} from 'carbon-components-react';
+} from '@carbon/react';
 import useDataApi from 'use-data-api';
 import { sampleText } from '../../data/sampleText';
 import { mapVoicesToDropdownItems } from './utils';
@@ -57,12 +57,11 @@ export const ControlContainer = ({ onSynthesize }) => {
           <Dropdown
             id="voice-model-dropdown"
             label="Select a voice model"
-            onChange={newModel => {
+            onChange={(newModel) => {
               onSelectVoice(newModel.selectedItem);
             }}
             items={mapVoicesToDropdownItems(voices)}
             selectedItem={selectedVoice && selectedVoice.label}
-            defaultText="Select a voice model"
             ariaLabel="Voice model selection dropdown"
             light
           />
@@ -86,7 +85,7 @@ export const ControlContainer = ({ onSynthesize }) => {
         disabled={!selectedVoice || !text}
         kind="primary"
         onClick={() => onSynthesize(text, selectedVoice)}
-        renderIcon={VolumeUp24Filled}
+        renderIcon={(props) => <VolumeUpFilled size={24} {...props} />}
       >
         Synthesize
       </Button>

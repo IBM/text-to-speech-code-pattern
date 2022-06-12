@@ -7,19 +7,19 @@ describe('App functionality', () => {
   });
 
   it('Text synthesis', async () => {
-    await page.waitFor('div.bx--dropdown', {
+    await page.waitFor('div.cds--dropdown', {
       timeout: 0,
     });
 
     // Choose voice model.
-    await expect(page).toClick('div.bx--dropdown');
-    await expect(page).toClick('div.bx--list-box__menu-item__option', {
+    await expect(page).toClick('div.cds--dropdown');
+    await expect(page).toClick('div.cds--list-box__menu-item__option', {
       text: 'Allison (V3): American English female voice',
     });
 
     // Add some text.
     await expect(page).toFill(
-      'textarea.bx--text-area',
+      'textarea.cds--text-area',
       'Good news, good news, good news, thats all they wanna hear.',
     );
 

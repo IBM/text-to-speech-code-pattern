@@ -8,4 +8,4 @@ node_modules
 # Misc
 .DS_Store
 .env
-build
+/build
