@@ -1,3 +1,9 @@
+@use '@carbon/react/scss/theme' as *;
+
+body {
+  background-color: $background;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
