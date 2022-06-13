@@ -9,7 +9,7 @@ import {
   TextArea,
   Tile,
 } from '@carbon/react';
-import useDataApi from 'use-data-api';
+import axios from 'axios';
 import { sampleText } from '../../data/sampleText';
 import { mapVoicesToDropdownItems } from './utils';
 
@@ -19,15 +19,19 @@ export const ControlContainer = ({ onSynthesize }) => {
   const [voices, setVoices] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState();
   const [text, setText] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
-  const [{ data, isLoading, isError }, doFetch] = useDataApi(VOICES_ENDPOINT, {
-    voices: [],
-  });
-
+  // Get voices data
   useEffect(() => {
-    doFetch(VOICES_ENDPOINT);
-    setVoices(data.voices);
-  }, [data, doFetch, isError, isLoading]);
+    axios(VOICES_ENDPOINT)
+      .then(({ data }) => setVoices(data.voices))
+      .catch(err => {
+        console.log(err);
+        setIsError(true);
+      })
+      .finally(setIsLoading(false));
+  }, []);
 
   // Default to initial voice once all voices are loaded.
   useEffect(() => {
