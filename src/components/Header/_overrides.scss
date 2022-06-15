@@ -1,4 +1,6 @@
-.bx--link {
+@use '@carbon/react/scss/colors' as *;
+
+.cds--link {
   &:focus {
     outline: none;
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ToastNotification } from 'carbon-components-react';
+import { ToastNotification } from '@carbon/react';
 
 const NOTIFICATION_HAS_BEEN_SEEN = 'notificationHasBeenSeen';
 
@@ -10,7 +10,6 @@ export const Toast = ({
   className,
   hideAfterFirstDisplay,
   hideCloseButton,
-  iconDescription,
   kind,
   lowContrast,
   onCloseButtonClick,
@@ -24,12 +23,8 @@ export const Toast = ({
 
   useEffect(() => {
     setId(
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-        Math.random()
-          .toString(36)
-          .substring(2, 15),
+      Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15),
     );
   }, []);
 
@@ -56,7 +51,6 @@ export const Toast = ({
       caption={caption}
       className={`custom-toast-${id} ${className}`}
       hideCloseButton={hideCloseButton}
-      iconDescription={iconDescription}
       kind={kind}
       lowContrast={lowContrast}
       onCloseButtonClick={() => {
@@ -85,7 +79,6 @@ Toast.propTypes = {
   className: PropTypes.string,
   hideAfterFirstDisplay: PropTypes.bool,
   hideCloseButton: PropTypes.bool,
-  iconDescription: PropTypes.string,
   kind: PropTypes.string,
   lowContrast: PropTypes.bool,
   onCloseButtonClick: PropTypes.func,
@@ -101,7 +94,6 @@ Toast.defaultProps = {
   className: '',
   hideAfterFirstDisplay: true,
   hideCloseButton: false,
-  iconDescription: 'closes notification',
   kind: 'error',
   lowContrast: false,
   onCloseButtonClick: () => {},
