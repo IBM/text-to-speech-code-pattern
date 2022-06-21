@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormGroup, Tile } from 'carbon-components-react';
+import { FormGroup, Tile } from '@carbon/react';
 
 export const OutputContainer = ({ audioElementRef }) => {
   return (
