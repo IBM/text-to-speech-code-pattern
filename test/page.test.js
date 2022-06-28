@@ -7,7 +7,7 @@ describe('App functionality', () => {
   });
 
   it('Text synthesis', async () => {
-    await page.waitFor('div.cds--dropdown', {
+    await page.waitForSelector('div.cds--dropdown', {
       timeout: 0,
     });
 
@@ -29,7 +29,7 @@ describe('App functionality', () => {
     });
 
     // Wait for the audio to play for a bit.
-    await page.waitFor(1000);
+    await page.waitForTimeout(1000);
 
     // Assert that the audio element now has a source.
     const audioElement = await page.$('audio.audio-output');
