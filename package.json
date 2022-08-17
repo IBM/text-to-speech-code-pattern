@@ -15,10 +15,10 @@
     "express-secure-only": "^0.2.1",
     "helmet": "^5.1.1",
     "husky": "^8.0.1",
-    "ibm-watson": "^7.0.0",
+    "ibm-watson": "^7.1.1",
     "lint-staged": "^13.0.3",
     "morgan": "^1.10.0",
-    "sass": "^1.54.3"
+    "sass": "^1.54.4"
   },
   "scripts": {
     "dev": "concurrently \"npm:client\" \"npm:server\"",
@@ -57,11 +57,11 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^14.4.2",
+    "@testing-library/user-event": "^14.4.3",
     "jest-puppeteer": "^6.1.1",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
-    "puppeteer": "^16.1.0",
+    "puppeteer": "^16.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-json-tree": "^0.17.0",
