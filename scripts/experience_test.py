@@ -3,6 +3,7 @@ import time
 import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
 # Do an action on the app's landing page
 options = Options()
@@ -25,25 +26,25 @@ try:
     if driver.title != expected_title:
         raise Exception("Title should be " + expected_title)
 
-    audio_button = driver.find_element_by_class_name('audio-output')
+    audio_button = driver.find_element(By.CLASS_NAME, 'audio-output')
     src = audio_button.get_attribute("src")
     print("AUDIO SOURCE: ", src)
 
     # Find and select Allison V3
-    drop_down = driver.find_element_by_xpath("//button[@id='downshift-0-toggle-button']")
+    drop_down = driver.find_element(By.XPATH, "//button[@id='downshift-0-toggle-button']")
     drop_down.click()
-    drop_down_element = driver.find_element_by_xpath("//div[contains(text(),'Allison (V3)')]")
+    drop_down_element = driver.find_element(By.XPATH, "//div[contains(text(),'Allison (V3)')]")
     drop_down_element.click()
 
     # Find button and click it
-    synthesize_button = driver.find_element_by_xpath("//button[contains(text(),'Synthesize')]")
+    synthesize_button = driver.find_element(By.XPATH, "//button[contains(text(),'Synthesize')]")
     synthesize_button.click()
 
     time.sleep(20)
 
     # Verify the action on the app's landing page
     # Input text
-    text_to_say = driver.find_element_by_id("text-input").text
+    text_to_say = driver.find_element(By.ID, "text-input").text
     print("SAY: ", text_to_say)
 
     expected = "Conscious of its spiritual and moral heritage"
@@ -53,7 +54,7 @@ try:
         print("First Test Successful")
 
     # Test that we got some audio
-    audio_button = driver.find_element_by_class_name('audio-output')
+    audio_button = driver.find_element(By.CLASS_NAME, 'audio-output')
     src = audio_button.get_attribute("src")
     print("AUDIO SOURCE: ", src)
 
