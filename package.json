@@ -4,7 +4,7 @@
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
-    "@carbon/react": "^1.16.0",
+    "@carbon/react": "^1.17.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.1",
     "concurrently": "^7.5.0",
@@ -14,11 +14,11 @@
     "express-rate-limit": "^6.6.0",
     "express-secure-only": "^0.2.1",
     "helmet": "^6.0.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "ibm-watson": "^7.1.2",
     "lint-staged": "^13.0.3",
     "morgan": "^1.10.0",
-    "sass": "^1.55.0"
+    "sass": "^1.56.1"
   },
   "scripts": {
     "dev": "concurrently \"npm:client\" \"npm:server\"",
