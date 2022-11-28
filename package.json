@@ -16,7 +16,7 @@
     "helmet": "^6.0.0",
     "husky": "^8.0.2",
     "ibm-watson": "^7.1.2",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^13.0.4",
     "morgan": "^1.10.0",
     "sass": "^1.56.1"
   },
