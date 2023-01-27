@@ -61,7 +61,7 @@
     "jest-puppeteer": "^6.2.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.3",
-    "puppeteer": "^18.0.3",
+    "puppeteer": "^19.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-json-tree": "^0.18.0",
