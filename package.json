@@ -4,7 +4,7 @@
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
-    "@carbon/react": "^1.21.0",
+    "@carbon/react": "^1.22.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.1",
     "concurrently": "^7.6.0",
@@ -16,9 +16,9 @@
     "helmet": "^6.0.1",
     "husky": "^8.0.3",
     "ibm-watson": "^7.1.2",
-    "lint-staged": "^13.1.0",
+    "lint-staged": "^13.1.1",
     "morgan": "^1.10.0",
-    "sass": "^1.57.1"
+    "sass": "^1.58.0"
   },
   "scripts": {
     "dev": "concurrently \"npm:client\" \"npm:server\"",
